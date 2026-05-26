@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator | Modern & Precise</title>
+    
+    <!-- Google Fonts: Outfit for a modern, geometric look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Link to custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="calculator-container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Age Calculator</h1>
+            <p class="subtitle">Discover exactly how much time has passed since you were born.</p>
+        </header>
+
+        <!-- Current Date Display -->
+        <div class="current-date" id="current-date-display">
+            Today is: <span>Loading...</span>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <label for="dob-input">Enter your Date of Birth</label>
+            <div class="input-wrapper">
+                <input type="date" id="dob-input" aria-label="Date of Birth">
+            </div>
+            
+            <!-- Error Message Container -->
+            <div class="error-message" id="error-message">
+                Please select a valid date.
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions">
+            <button class="btn btn-primary" id="calculate-btn">Calculate Age</button>
+            <button class="btn btn-secondary" id="reset-btn">Reset</button>
+        </div>
+
+        <!-- Results Section (Hidden by default) -->
+        <div class="results" id="results">
+            <h2>You are precisely:</h2>
+            <div class="time-blocks">
+                <div class="time-block">
+                    <span class="number" id="result-years">0</span>
+                    <span class="label">Years</span>
+                </div>
+                <div class="time-block">
+                    <span class="number" id="result-months">0</span>
+                    <span class="label">Months</span>
+                </div>
+                <div class="time-block">
+                    <span class="number" id="result-days">0</span>
+                    <span class="label">Days</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

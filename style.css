@@ -1,0 +1,290 @@
+/* ==========================================================================
+   Base Styles & Reset
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    /* Modern, premium gradient background */
+    background: linear-gradient(135deg, #0f172a 0%, #312e81 50%, #4c1d95 100%);
+    background-size: 200% 200%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    padding: 20px;
+}
+
+/* Background animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ==========================================================================
+   Main Container (Glassmorphism)
+   ========================================================================== */
+.calculator-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255,255,255,0.05);
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calculator-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 55px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255,255,255,0.1);
+}
+
+/* ==========================================================================
+   Header & Text
+   ========================================================================== */
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #fff, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    font-weight: 300;
+}
+
+.current-date {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 0 auto 30px;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+}
+
+.current-date span {
+    color: #e2e8f0;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+/* ==========================================================================
+   Inputs
+   ========================================================================== */
+.input-section {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-section label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    margin-left: 5px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color-scheme: dark; /* Makes the calendar icon white in supported browsers */
+}
+
+.input-wrapper input:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+}
+
+.error-message {
+    color: #f87171;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    margin-left: 5px;
+    display: none; /* Hidden by default */
+}
+
+/* Error Shake Animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+.shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+    color: white;
+    box-shadow: 0 4px 15px rgba(109, 40, 217, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(109, 40, 217, 0.6);
+    background: linear-gradient(135deg, #9366f9, #7c3aed);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   Results Section
+   ========================================================================== */
+.results {
+    display: none; /* Hidden by default */
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 25px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.results.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.results h2 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #cbd5e1;
+    margin-bottom: 15px;
+}
+
+.time-blocks {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.time-block {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px 10px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.time-block:hover {
+    transform: translateY(-3px);
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(167, 139, 250, 0.3);
+}
+
+.time-block .number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 5px;
+    /* Gradient text for numbers */
+    background: linear-gradient(135deg, #c4b5fd, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.time-block .label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 480px) {
+    .calculator-container {
+        padding: 30px 20px;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .time-block .number {
+        font-size: 2rem;
+    }
+    
+    .actions {
+        flex-direction: column;
+    }
+}
